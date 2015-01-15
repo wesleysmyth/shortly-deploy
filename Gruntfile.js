@@ -131,8 +131,8 @@ module.exports = function(grunt) {
     'uglify',
     'jshint',
     // 'shell'
-    // 'test',
-    // 'upload'
+    'test',
+    'upload'
   ]);
 
   grunt.registerTask('upload', function(n) {
@@ -147,7 +147,7 @@ module.exports = function(grunt) {
   grunt.registerTask('deploy', function(n) {
     // add your deploy tasks here
     // if(grunt.option('prod')) {
-    //   console.log('deploy run');
+    //  console.log('deploy run');
     //  grunt.task.run([ 'build' ])
     // }
   });
