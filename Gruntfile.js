@@ -129,7 +129,8 @@ module.exports = function(grunt) {
     // 'copy',
     'concat',
     'uglify',
-    'jshint'
+    'jshint',
+    'shell'
     // 'test',
     // 'upload'
   ]);
@@ -146,9 +147,8 @@ module.exports = function(grunt) {
   grunt.registerTask('deploy', function(n) {
     // add your deploy tasks here
     if(grunt.option('prod')) {
-      console.log('deploy run')
-      'build'
-      grunt.task.run([ 'shell' ])
+      console.log('deploy run');
+      grunt.task.run([ 'build' ])
     }
   });
 
