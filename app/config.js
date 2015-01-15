@@ -18,16 +18,18 @@ var urlSchema = new Schema({
   visits: Number
 });
 
-var userSchema = new Schema({
-  username:  String,
-  password: String
-});
+// var userSchema = new Schema({
+//   username:  String,
+//   password: String
+// });
 
 
-var User = mongoose.model('User', userSchema);
-var Url = mongoose.model('Url', userSchema);
 
-module.exports.User = User;
+
+// var User = mongoose.model('User', userSchema);
+var Url = mongoose.model('Url', urlSchema);
+
+// module.exports.User = User;
 module.exports.Url = Url;
 
 // var fred = new User({username: 'fred', password: 'zirdung'});
