@@ -2,7 +2,24 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    clean: [ 'public/dist' ],
+
     concat: {
+      dist: {
+        library: {
+          src: ['public/lib/underscore.js',
+                'public/lib/jquery.js',
+                'public/lib/backbone.js',
+                'public/lib/handlebars.js'
+          ]
+          dest: 'public/dist/library.js'
+        },
+        client: {
+          src: 'public/client/*.js',
+          dest: 'public/dist/client.js'
+        },
+      }
     },
 
     mochaTest: {
@@ -21,11 +38,24 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      options: {
+        mangle: false
+      },
+      my_target: {
+        files: {
+          'public/dist/library.min.js' : ['public/dist/library.js'],
+          'public/dist/client.min.js' : ['public/dist/client.js']
+        }
+      }
     },
 
     jshint: {
       files: [
         // Add filespec list here
+        'Gruntfile.js',
+        'public/client/*.js',
+        'lib/*.js',
+        'app/**/*.js'
       ],
       options: {
         force: 'true',
@@ -59,6 +89,7 @@ module.exports = function(grunt) {
 
     shell: {
       prodServer: {
+        command: 'git push azure master'
       }
     },
   });
@@ -71,6 +102,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  // grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -94,11 +127,19 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'clean',
+    // 'copy',
+    'concat',
+    'uglify',
+    'jshint',
+    // 'test',
+    'upload'
   ]);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
       // add your production server task here
+      grunt.task.run([ 'shell' ])
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
@@ -106,6 +147,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
+    'build'
   ]);
 
 
