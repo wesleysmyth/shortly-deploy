@@ -146,10 +146,10 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', function(n) {
     // add your deploy tasks here
-    if(grunt.option('prod')) {
-      console.log('deploy run');
-      grunt.task.run([ 'build' ])
-    }
+    // if(grunt.option('prod')) {
+    //   console.log('deploy run');
+    //   grunt.task.run([ 'build' ])
+    // }
   });
 
 
