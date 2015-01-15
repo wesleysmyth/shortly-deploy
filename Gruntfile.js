@@ -148,7 +148,7 @@ module.exports = function(grunt) {
     // add your deploy tasks here
     // if(grunt.option('prod')) {
     //   console.log('deploy run');
-    //   grunt.task.run([ 'build' ])
+    //  grunt.task.run([ 'build' ])
     // }
   });
 
