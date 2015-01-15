@@ -130,7 +130,7 @@ module.exports = function(grunt) {
     'concat',
     'uglify',
     'jshint',
-    'shell'
+    // 'shell'
     // 'test',
     // 'upload'
   ]);
