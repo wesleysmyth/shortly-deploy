@@ -129,9 +129,9 @@ module.exports = function(grunt) {
     // 'copy',
     'concat',
     'uglify',
-    'jshint',
+    'jshint'
     // 'test',
-    'upload'
+    // 'upload'
   ]);
 
   grunt.registerTask('upload', function(n) {
@@ -143,10 +143,14 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('deploy', [
+  grunt.registerTask('deploy', function(n) {
     // add your deploy tasks here
-    'build'
-  ]);
+    if(grunt.option('prod')) {
+      console.log('deploy run')
+      'build'
+      grunt.task.run([ 'shell' ])
+    }
+  });
 
 
 };
